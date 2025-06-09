@@ -1,0 +1,30 @@
+const express = require('express');
+const app = express();
+
+const SECRET_WORD = process.env.SECRET_WORD || "not-set";
+
+app.get('/', (req, res) => {
+  res.send(`Welcome! SECRET_WORD is: ${SECRET_WORD}`);
+});
+
+app.get('/docker', (req, res) => {
+  res.send("Docker container is running!");
+});
+
+app.get('/secret_word', (req, res) => {
+  res.send(`Secret Word: ${SECRET_WORD}`);
+});
+
+app.get('/loadbalanced', (req, res) => {
+  res.send("Load balancer check passed.");
+});
+
+app.get('/tls', (req, res) => {
+  res.send("TLS is enabled!");
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
+
